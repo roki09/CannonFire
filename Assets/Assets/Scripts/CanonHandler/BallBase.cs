@@ -12,8 +12,7 @@ public class BallBase : MonoBehaviour
     private void Awake()
     {
         ballsRb = GetComponent<Rigidbody>();
-        var tatgetRotate = spawner.transform.rotation;
-        ball.transform.rotation =  tatgetRotate;
+        ball.transform.rotation = spawner.transform.rotation;
     }
     void Start()
     {

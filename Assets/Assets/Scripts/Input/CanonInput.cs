@@ -8,10 +8,6 @@ public class CanonInput : AbstractInput
     [SerializeField] private CanonBase _rotateBase;
     [SerializeField] private GameObject balls;
     [SerializeField] private GameObject spawner;
-
-    private void Awake()
-    {
-    }
     void Update()
     {
         CannonRotate();
