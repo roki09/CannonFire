@@ -6,18 +6,23 @@ using UnityEngine;
 public class BallBase : MonoBehaviour
 {
     [SerializeField] private GameObject ball;
-    [SerializeField] private GameObject spawner;
-    [SerializeField] private Rigidbody ballsRb;
-    [SerializeField] private float livingTime = 5;
-    [SerializeField] private Transform _directionIndicator;
 
-
-    private void FixedUpdate()
+    private void Start()
     {
-        livingTime -= 1 * Time.deltaTime;
-        if(livingTime <= 0)
-            Destroy(gameObject);
+        GetComponent<Rigidbody>();
     }
+
+    void OnEnable()
+    {
+        StartCoroutine(TimerToBecomeInactive());
+    }
+
+    private IEnumerator TimerToBecomeInactive()
+    {
+        yield return new WaitForSeconds(5);
+        gameObject.SetActive(false);
+    }
+
 
 
 }
