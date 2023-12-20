@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 
 public class BallBase : MonoBehaviour
@@ -8,20 +9,15 @@ public class BallBase : MonoBehaviour
     [SerializeField] private GameObject spawner;
     [SerializeField] private Rigidbody ballsRb;
     [SerializeField] private float livingTime = 5;
+    [SerializeField] private Transform _directionIndicator;
 
-    private void Awake()
-    {
-        ballsRb = GetComponent<Rigidbody>();
-        ball.transform.rotation = spawner.transform.rotation;
-    }
-    void Start()
-    {
-        ballsRb.AddForce( transform.forward * 10, ForceMode.VelocityChange);
-    }
+
     private void FixedUpdate()
     {
         livingTime -= 1 * Time.deltaTime;
         if(livingTime <= 0)
             Destroy(gameObject);
     }
+
+
 }

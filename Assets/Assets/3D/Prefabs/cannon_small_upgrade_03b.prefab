@@ -129,5 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 5735032657928518009}
-  spawner: {fileID: 6453338924046159058, guid: a7784ad4d6d05044b83c382e7f8f428f, type: 3}
+  spawner: {fileID: 4372130995476800080, guid: b31633682d46d2d41be05fe79bdc5855, type: 3}
   ballsRb: {fileID: 9134300648148609699}
+  livingTime: 5
+  _directionIndicator: {fileID: 0}

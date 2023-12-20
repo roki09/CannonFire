@@ -7,7 +7,8 @@ public class CanonInput : AbstractInput
     [SerializeField] private float rotateSpeed = 100;
     [SerializeField] private CanonBase _rotateBase;
     [SerializeField] private GameObject balls;
-    [SerializeField] private GameObject spawner;
+    [SerializeField] private ShootBase shootBase;
+
     void Update()
     {
         CannonRotate();
@@ -26,6 +27,6 @@ public class CanonInput : AbstractInput
     public override void CannonFire()
     {
         if (Input.GetKeyDown(KeyCode.F))
-            Instantiate(balls, spawner.transform.position, Quaternion.identity, null);
+            shootBase.Shoot();
     }
 }
