@@ -19,8 +19,8 @@ public class CanonInput : AbstractInput
     {
         _rotateBase.Rotate
         (new Vector2
-        (Input.GetAxis("Vertical"),
-        Input.GetAxis("Horizontal"))
+        (Input.GetAxis("Horizontal"),
+        Input.GetAxis("Vertical"))
         * Time.deltaTime * rotateSpeed);
     }
 
