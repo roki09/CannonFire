@@ -4,22 +4,18 @@ using UnityEngine;
 
 public class InterTarget : MonoBehaviour
 {
-    private TargeBase target;
+    [SerializeField] private TargeBase target;
 
-    private void Awake()
+    private void Update()
     {
-        target = GetComponent<TargeBase>();
-    }
-    private void Ubdate()
-    {
-        if (!target.isActiveAndEnabled)
+        if(!target.isActiveAndEnabled)
         {
             StartCoroutine(RespawnTimer());
         }
     }
-    private IEnumerator RespawnTimer()
+    private IEnumerator  RespawnTimer()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2);
         target.currentHealth = target.maxHealth;
         target.gameObject.SetActive(true);
     }
