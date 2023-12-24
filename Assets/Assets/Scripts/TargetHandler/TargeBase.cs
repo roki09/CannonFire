@@ -4,29 +4,37 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class TargeBase : MonoBehaviour
+public class TargeBase : AbstractTarget
 {
     [SerializeField] public float maxHealth = 50;
     [SerializeField] private int score = 10;
     [SerializeField] public float currentHealth = 50;
-    [SerializeField] private Material currentMaterial;
     [SerializeField] private UIHandler scoreText;
 
-    public void GetDamage(float damage)
+    private void OnEnable()
     {
+        //Не получилось сделать пердвижение без багов вместе с респавном
+        //transform.DOMoveX(3, 3).SetLoops(-1, LoopType.Yoyo);
+    }
+
+    public override void GetDamage(float damage)
+    {
+        //Как мне сделать чтобы анимации возращали объект в прежнее положение или прежний цвет без лишних манипуляций.
         currentHealth -= damage;
-        //transform.DOScale(5, 0.1f).SetLoops(3, LoopType.Yoyo);
+        DOTween.Sequence().
+            Append(transform.DORotate(new Vector3(150, 0, 0), 0.5f)).
+            Append(transform.DORotate(new Vector3(0, 0, 0), 0.5f));
+
         if (currentHealth <= 0)
         {
             Smite();
         }
-        //transform.DOScale(1, 0.1f);
-        //currentMaterial.DOColor(Color.red, 0.1f).SetLoops(3, LoopType.Yoyo).SetEase(Ease.InOutBack);
-    }
 
-    public void Smite()
+    }
+    public override void Smite()
     {
         scoreText.GetScore(score);
         gameObject.SetActive(false);
     }
+
 }

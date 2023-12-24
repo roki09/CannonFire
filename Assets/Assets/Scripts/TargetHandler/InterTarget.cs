@@ -4,19 +4,35 @@ using UnityEngine;
 
 public class InterTarget : MonoBehaviour
 {
-    [SerializeField] private TargeBase target;
+    private TargeBase target;
+    [SerializeField] private List<TargeBase> targetList;
 
     private void Update()
     {
-        if(!target.isActiveAndEnabled)
+        if (GetInActivTarget() != null)
         {
+            target = GetInActivTarget();
             StartCoroutine(RespawnTimer());
         }
     }
-    private IEnumerator  RespawnTimer()
+
+    private IEnumerator RespawnTimer()
     {
         yield return new WaitForSeconds(2);
         target.currentHealth = target.maxHealth;
         target.gameObject.SetActive(true);
+    }
+
+    private TargeBase GetInActivTarget()
+    {
+        foreach (TargeBase target in targetList)
+        {
+            if (!target.isActiveAndEnabled)
+            {
+                return target;
+            }
+        }
+        return null;
+
     }
 }
